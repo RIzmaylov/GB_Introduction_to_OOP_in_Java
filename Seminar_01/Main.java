@@ -1,5 +1,9 @@
 package Seminar_01;
 
+import java.util.ArrayList;
+
+import Seminar_01.CharacterPackage.*;
+
 /*
 Проанализировать персонажей "Крестьянин, Разбойник, Снайпер, Колдун, Копейщик, Арбалетчик, Монах".
 Для каждого определить 8 полей данных(здоровье, сила итд) 3-4 поля поведения(методов атаковать, вылечить итд).
@@ -86,12 +90,23 @@ package Seminar_01;
     - Урон
     - Защита
 
-    - Вера
+    - Мана
     - Интеллект
-    - Стойкость
   */
 public class Main {
     public static void main(String[] args) {
-        
+      ArrayList<BaseCharacter> characters = new ArrayList<>();
+      characters.add(new Peasant("Петя"));
+      characters.add(new Monk("Вася"));
+      characters.add(new Crossbowman("Коля"));
+      characters.add(new Robber("Витя"));
+      characters.add(new Sniper("Валя"));
+      characters.add(new Spearman("Таня"));
+      characters.add(new Witch("Вова"));
+
+      for (BaseCharacter character : characters) {
+        System.out.println(character);
+        System.out.println();
+      }
     }
 }
