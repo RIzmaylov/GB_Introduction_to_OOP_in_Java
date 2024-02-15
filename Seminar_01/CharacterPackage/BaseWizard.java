@@ -1,6 +1,6 @@
 package Seminar_01.CharacterPackage;
 
-public class BaseWizard extends BaseCharacter{
+public abstract class BaseWizard extends BaseCharacter{
     private int mana;
     private int maxMana = 100;
     private int intelligence;

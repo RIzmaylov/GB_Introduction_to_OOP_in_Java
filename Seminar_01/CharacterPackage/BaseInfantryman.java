@@ -1,6 +1,6 @@
 package Seminar_01.CharacterPackage;
 
-public class BaseInfantryman extends BaseCharacter{
+public abstract class BaseInfantryman extends BaseCharacter{
     private int strength;
     private int endurance;
 

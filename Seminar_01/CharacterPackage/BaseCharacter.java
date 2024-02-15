@@ -1,6 +1,6 @@
 package Seminar_01.CharacterPackage;
 
-public class BaseCharacter {
+public abstract class BaseCharacter {
     protected String name;
     protected int health;
     protected int maxHealth = 100;

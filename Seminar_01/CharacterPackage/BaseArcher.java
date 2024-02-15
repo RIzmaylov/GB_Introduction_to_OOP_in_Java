@@ -1,6 +1,6 @@
 package Seminar_01.CharacterPackage;
 
-public class BaseArcher extends BaseCharacter{
+public abstract class BaseArcher extends BaseCharacter{
     private int accuracy;
     private int fireRange;
     private int fireRate;
