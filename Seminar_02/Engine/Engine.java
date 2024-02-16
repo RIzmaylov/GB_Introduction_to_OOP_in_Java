@@ -13,6 +13,12 @@ public class Engine {
          "Леша", "Дима", "Жора", "Иннокентий", "Петрович", "Сан Саныч", "Шарик"));
     private Random random = new Random();
 
+    /**
+     * Создание команды персонажей
+     * @param side  - выбор стороны. Left или Right
+     * @param cnt   - количество персонажей в команде
+     * @return  - возвращает список персонажей случайных имен и типов
+     */
     public ArrayList<BaseCharacter> createTeam(String side, int cnt) {
         ArrayList<BaseCharacter> team = new ArrayList<>();
         int posY = 0;
@@ -25,6 +31,13 @@ public class Engine {
         return team;
     }
 
+    /**
+     * Функция создает персонажа
+     * @param i - случайное число, определяющее тип персонажа
+     * @param x - позиция по X
+     * @param y - позиция по Y
+     * @return  - возвращается персонаж
+     */
     private BaseCharacter createCharacter(int i, int x, int y) {
         switch (i) {
             case 0:

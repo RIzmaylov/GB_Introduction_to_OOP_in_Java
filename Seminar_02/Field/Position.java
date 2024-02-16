@@ -18,6 +18,14 @@ public class Position {
         return x;
     }
 
+    public int getY() {
+        return y;
+    }    
+    /**
+     * Функция рассчета ближайшего расстояния до другого персонажа
+     * @param other - другой персонаж
+     * @return  - возвращает расстояние
+     */
     public double CalcDistToAnotherPos(Position other) {
         return Math.sqrt(Math.pow(this.x - other.getX(), 2) + Math.pow(this.y - other.getY(), 2));
     }
@@ -26,8 +34,4 @@ public class Position {
         this.x = x;
         this.y = y;
     }
-
-    public int getY() {
-        return y;
-    }    
 }
