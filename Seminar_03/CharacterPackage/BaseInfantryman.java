@@ -1,11 +1,13 @@
 package Seminar_03.CharacterPackage;
 
+import java.util.ArrayList;
+
 public abstract class BaseInfantryman extends BaseCharacter{
     private int strength;
     private int endurance;
 
     protected BaseInfantryman(String name, String weapon, int x, int y) {
-        super(name, weapon, 10, 10, x, y);
+        super(name, weapon, 10, 10, x, y, 2);
         this.strength = 10;
         this.endurance = 10;
     }
@@ -36,7 +38,7 @@ public abstract class BaseInfantryman extends BaseCharacter{
     }
 
     @Override
-    public void step() {
+    public void step(ArrayList<BaseCharacter> enemies) {
         // TODO Auto-generated method stub
         
     }

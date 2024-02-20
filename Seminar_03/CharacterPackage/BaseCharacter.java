@@ -14,10 +14,12 @@ public abstract class BaseCharacter implements Step{
     protected int maxLevel = 80;
     protected int damage;
     protected int defense;
+    protected boolean isAlive = true;
+    protected int initiative;
 
     protected Position position;
 
-    protected BaseCharacter(String name, String weapon, int damage, int defense, int x, int y) {
+    protected BaseCharacter(String name, String weapon, int damage, int defense, int x, int y, int initiative) {
         this.name = name;
         this.health = 100;
         this.weapon = weapon;
@@ -25,6 +27,7 @@ public abstract class BaseCharacter implements Step{
         this.damage = damage;
         this.defense = defense;
         this.current_xp = 0;
+        this.initiative = initiative;
         position = new Position(x, y);
     }
 
@@ -72,5 +75,17 @@ public abstract class BaseCharacter implements Step{
     @Override
     public String toString() {
         return "Coordinates: x = " + position.getX() + ", y = " + position.getY() + "\n";
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    public void dying() {
+        isAlive = false;
+    }
+
+    public void revival() {
+        isAlive = true;
     }
 }

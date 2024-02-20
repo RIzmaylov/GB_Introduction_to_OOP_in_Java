@@ -1,10 +1,12 @@
 package Seminar_03.CharacterPackage;
 
+import java.util.ArrayList;
+
 public class Peasant extends BaseCharacter{
     private int strength;
 
     public Peasant(String name, int x, int y) {
-        super(name, "pitchfork", 10, 10, x, y);
+        super(name, "pitchfork", 10, 10, x, y, 0);
         this.strength = 10;
     }
 
@@ -31,7 +33,7 @@ public class Peasant extends BaseCharacter{
     }
 
     @Override
-    public void step() {
+    public void step(ArrayList<BaseCharacter> enemies) {
         // TODO Auto-generated method stub;
     }
 }
