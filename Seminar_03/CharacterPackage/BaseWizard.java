@@ -7,8 +7,8 @@ public abstract class BaseWizard extends BaseCharacter{
     private int maxMana = 100;
     private int intelligence;
 
-    protected BaseWizard(String name, String weapon, int x, int y) {
-        super(name, weapon, 75, 5, x, y, 1);
+    protected BaseWizard(String name, String weapon, int x, int y, Team teamSide) {
+        super(name, weapon, 75, 5, x, y, 1, teamSide);
         this.mana = 100;
         this.intelligence = 10;
     }
@@ -43,7 +43,6 @@ public abstract class BaseWizard extends BaseCharacter{
 
     @Override
     public void step(ArrayList<BaseCharacter> enemies) {
-        // TODO Auto-generated method stub
-        
+        System.out.println(toString() + " ничего не делает");
     }
 }

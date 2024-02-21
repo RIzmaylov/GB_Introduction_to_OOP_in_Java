@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Peasant extends BaseCharacter{
     private int strength;
 
-    public Peasant(String name, int x, int y) {
-        super(name, "pitchfork", 10, 10, x, y, 0);
+    public Peasant(String name, int x, int y, Team teamSide) {
+        super(name, "pitchfork", 10, 10, x, y, 0, teamSide);
         this.strength = 10;
     }
 
@@ -28,12 +28,12 @@ public class Peasant extends BaseCharacter{
     @Override
     public String toString() {
         return super.toString() +
-                "Класс: Крестьянин\n" +
+                "Класс: Крестьянин " +
                 "Имя: " + this.name;
     }
 
     @Override
     public void step(ArrayList<BaseCharacter> enemies) {
-        // TODO Auto-generated method stub;
+        System.out.println(toString() + " ничего не делает");
     }
 }

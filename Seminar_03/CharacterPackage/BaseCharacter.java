@@ -3,7 +3,7 @@ package Seminar_03.CharacterPackage;
 import Seminar_03.Field.Position;
 import Seminar_03.Interfaces.Step;
 
-public abstract class BaseCharacter implements Step{
+public abstract class BaseCharacter implements Step {
     protected String name;
     protected int health;
     protected int maxHealth = 100;
@@ -16,10 +16,15 @@ public abstract class BaseCharacter implements Step{
     protected int defense;
     protected boolean isAlive = true;
     protected int initiative;
+    protected Team teamSide;
 
     protected Position position;
 
-    protected BaseCharacter(String name, String weapon, int damage, int defense, int x, int y, int initiative) {
+    static public enum Team {
+        LEFT, RIGHT
+    }
+
+    protected BaseCharacter(String name, String weapon, int damage, int defense, int x, int y, int initiative, Team teamSide) {
         this.name = name;
         this.health = 100;
         this.weapon = weapon;
@@ -29,6 +34,7 @@ public abstract class BaseCharacter implements Step{
         this.current_xp = 0;
         this.initiative = initiative;
         position = new Position(x, y);
+        this.teamSide = teamSide;
     }
 
     public void print() {
@@ -41,19 +47,8 @@ public abstract class BaseCharacter implements Step{
                 "XP: " + this.current_xp + "\n");
     }
 
-    public void GetDamage(int damage) {
-        if (this.health - damage > 0) {
-            this.health -= damage;
-        }
-    }
-
-    public void GetXp(int xp) {
-        if (this.current_xp + xp >= this.xpInLevel) {
-            this.level++;
-            this.current_xp += xp - xpInLevel;
-        } else {
-            this.current_xp += xp;
-        }
+    public String getName() {
+        return name;
     }
 
     public void healed(int Hp) {
@@ -65,11 +60,8 @@ public abstract class BaseCharacter implements Step{
     }
 
     public void Attack(BaseCharacter target) {
+        System.out.println(this.toString() + "\nАтаковал\n" + target + "\nУроном " + this.damage);
         target.GetDamage(this.damage);
-    }
-
-    public Position GetPosition() {
-        return position;
     }
 
     @Override
@@ -82,10 +74,44 @@ public abstract class BaseCharacter implements Step{
     }
 
     public void dying() {
+        health = 0;
         isAlive = false;
     }
 
-    public void revival() {
+    public void revival(int health) {
+        this.health = health;
         isAlive = true;
+    }
+
+    public void GetDamage(int damage) {
+        if (this.health - damage > 0) {
+            this.health -= damage;
+            System.out.println("Осталось жизней - " + this.health + "\n");
+        } else {
+            System.out.println("Умер :(\n");
+            dying();
+        }
+    }
+
+    public void GetXp(int xp) {
+        if (this.current_xp + xp >= this.xpInLevel) {
+            this.level++;
+            this.current_xp += xp - xpInLevel;
+        } else {
+            this.current_xp += xp;
+        }
+    }
+
+    public Position GetPosition() {
+        return position;
+    }
+
+    public int GetInitiative() {
+        return initiative;
+    }
+
+    public String GetTeamSide() {
+        if (teamSide == Team.LEFT) return "left";
+        else return "right";
     }
 }

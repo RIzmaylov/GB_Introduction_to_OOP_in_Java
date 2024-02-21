@@ -2,14 +2,14 @@ package Seminar_03.CharacterPackage;
 
 public class Robber extends BaseInfantryman{
 
-    public Robber(String name, int x, int y) {
-        super(name, "knive", x, y);
+    public Robber(String name, int x, int y, Team teamSide) {
+        super(name, "knive", x, y, teamSide);
     }
 
     @Override
     public String toString() {
         return super.toString() +
-                "Класс: Разбойник\n" +
+                "Класс: Разбойник " +
                 "Имя: " + this.name;
     }
     

@@ -8,8 +8,8 @@ public abstract class BaseArcher extends BaseCharacter{
     private int fireRate;
     private int arrows;
 
-    protected BaseArcher(String name, String weapon, int x, int y) {
-        super(name, weapon, 75, 5, x, y, 3);
+    protected BaseArcher(String name, String weapon, int x, int y, Team teamSide) {
+        super(name, weapon, 75, 5, x, y, 3, teamSide);
         this.accuracy = 10;
         this.fireRange = 10;
         this.fireRate = 10;
@@ -19,7 +19,7 @@ public abstract class BaseArcher extends BaseCharacter{
     @Override
     public void Attack(BaseCharacter target) {
         if (arrows > 0) {
-            target.GetDamage(damage);
+            super.Attack(target);
             arrows--;
         }
     }
@@ -37,7 +37,14 @@ public abstract class BaseArcher extends BaseCharacter{
         }
     }
 
-    public BaseCharacter nearestEnemy(ArrayList<BaseCharacter> enemies) {
+    public BaseCharacter nearestEnemy(ArrayList<BaseCharacter> AllUnits) {
+        ArrayList<BaseCharacter> enemies = new ArrayList<>();
+        for (BaseCharacter baseCharacter : AllUnits) {
+            if (baseCharacter.GetTeamSide() != GetTeamSide()) {
+                enemies.add(baseCharacter);
+            }
+        }
+        
         int indexOfEnemy = 0;
         double minDistToEnemy = GetPosition().CalcDistToAnotherPos(enemies.get(indexOfEnemy).GetPosition());
         for (int i = 1; i < enemies.size(); i++) {
@@ -63,9 +70,9 @@ public abstract class BaseArcher extends BaseCharacter{
     }
 
     @Override
-    public void step(ArrayList<BaseCharacter> enemies) {
+    public void step(ArrayList<BaseCharacter> AllUnits) {
         if (isAlive) {
-            Attack(nearestEnemy(enemies));
+            Attack(nearestEnemy(AllUnits));
         }
     }
     

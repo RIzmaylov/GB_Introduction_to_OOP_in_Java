@@ -3,23 +3,27 @@ package Seminar_03;
 import java.util.ArrayList;
 
 import Seminar_03.CharacterPackage.*;
+import Seminar_03.CharacterPackage.BaseCharacter.Team;
+import Seminar_03.Comparators.InitiativeComparator;
 import Seminar_03.Engine.Engine;
 
 public class Main {
     public static void main(String[] args) {
       Engine engine = new Engine();
-      ArrayList<BaseCharacter> leftTeam = engine.createTeam("Left", 10);
-      ArrayList<BaseCharacter> rightTeam = engine.createTeam("Right", 10);
+      ArrayList<BaseCharacter> AllUnits = engine.createTeam(Team.LEFT, 10);
+      AllUnits.addAll(engine.createTeam(Team.RIGHT, 10));
 
-      System.out.println("Team left: ");
-      for (BaseCharacter character : leftTeam) {
+      for (BaseCharacter character : AllUnits) {
+        System.out.println("Team: " + character.GetTeamSide());
         System.out.println(character);
         System.out.println();
       }
-      System.out.println("Team right: ");
-      for (BaseCharacter character : rightTeam) {
-        System.out.println(character);
-        System.out.println();
+
+      System.out.println("------------------------------------");
+
+      AllUnits.sort(new InitiativeComparator());
+      for (BaseCharacter baseCharacter : AllUnits) {
+        baseCharacter.step(AllUnits);
       }
     }
 }

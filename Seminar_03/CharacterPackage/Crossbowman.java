@@ -1,14 +1,14 @@
 package Seminar_03.CharacterPackage;
 
 public class Crossbowman extends BaseArcher{
-    public Crossbowman(String name, int x, int y) {
-        super(name, "crossbow", x, y);
+    public Crossbowman(String name, int x, int y, Team teamSide) {
+        super(name, "crossbow", x, y, teamSide);
     }
 
     @Override
     public String toString() {
         return super.toString() +
-                "Класс: Арбалетчик\n" +
+                "Класс: Арбалетчик " +
                 "Имя: " + this.name;
     }
 }
