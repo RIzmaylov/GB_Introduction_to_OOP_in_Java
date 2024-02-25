@@ -1,4 +1,4 @@
-package Seminar_03.CharacterPackage;
+package Seminar_04.CharacterPackage;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package Seminar_03.Field;
+package Seminar_04.Field;
 
 public class Position {
 

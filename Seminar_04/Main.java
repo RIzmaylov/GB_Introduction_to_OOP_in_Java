@@ -1,10 +1,10 @@
-package Seminar_03;
+package Seminar_04;
 
 import java.util.ArrayList;
 
-import Seminar_03.CharacterPackage.*;
-import Seminar_03.CharacterPackage.BaseCharacter.Team;
-import Seminar_03.Engine.Engine;
+import Seminar_04.CharacterPackage.*;
+import Seminar_04.CharacterPackage.BaseCharacter.Team;
+import Seminar_04.Engine.Engine;
 
 public class Main {
     public static void main(String[] args) {

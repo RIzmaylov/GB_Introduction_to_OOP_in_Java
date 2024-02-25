@@ -1,8 +1,8 @@
-package Seminar_03.CharacterPackage;
+package Seminar_04.CharacterPackage;
 
 import java.util.ArrayList;
 
-import Seminar_03.Field.Position;
+import Seminar_04.Field.Position;
 
 public abstract class BaseInfantryman extends BaseCharacter{
     private int strength;
