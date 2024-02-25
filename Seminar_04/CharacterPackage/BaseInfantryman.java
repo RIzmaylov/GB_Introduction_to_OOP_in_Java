@@ -16,7 +16,7 @@ public abstract class BaseInfantryman extends BaseCharacter{
     
     @Override
     public void Attack(BaseCharacter target) {
-        target.GetDamage(damage * strength * endurance);
+        target.GetDamage(damage + strength + endurance);
     }
     
     @Override
@@ -39,11 +39,22 @@ public abstract class BaseInfantryman extends BaseCharacter{
         this.endurance += points;
     }
 
+    private void MoveToPosition(Position difPosition) {
+        if (Math.abs(difPosition.getX()) < Math.abs(difPosition.getY())) {
+            
+        }
+    }
+
     @Override
     public void step(ArrayList<BaseCharacter> AllUnits) {
         if (isAlive) {
             BaseCharacter target = nearestEnemy(AllUnits);
-            Position difPosition = GetPosition().GetDifOfToEnotherPos(target.GetPosition());
+            Position difPosition = GetPosition().GetDifToEnotherPos(target.GetPosition());
+            if (Math.abs(difPosition.getX()) <= 1 && Math.abs(difPosition.getY()) <= 1) {
+                Attack(target);
+            } else {
+                MoveToPosition(difPosition);
+            }
         }
     }
     

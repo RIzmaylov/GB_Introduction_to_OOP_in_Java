@@ -117,6 +117,9 @@ public abstract class BaseCharacter implements Step {
         else return "right";
     }
 
+    protected void SetPosition(int x, int y) {
+        position.setPosition(x, y);
+    }
     
     public BaseCharacter nearestEnemy(ArrayList<BaseCharacter> AllUnits) {
         ArrayList<BaseCharacter> enemies = new ArrayList<>();

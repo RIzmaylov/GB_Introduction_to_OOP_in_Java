@@ -35,7 +35,7 @@ public class Position {
      * @param other - другая позиция
      * @return - возвращает разницу dX и dY до другой позиции в Position
      */
-    public Position GetDifOfToEnotherPos(Position other) {
+    public Position GetDifToEnotherPos(Position other) {
         return new Position(x - other.getX(), y - other.getY());
     }
 
