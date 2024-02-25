@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import Seminar_03.CharacterPackage.*;
 import Seminar_03.CharacterPackage.BaseCharacter.Team;
-import Seminar_03.Comparators.InitiativeComparator;
 import Seminar_03.Engine.Engine;
 
 public class Main {
@@ -21,7 +20,8 @@ public class Main {
 
       System.out.println("------------------------------------");
 
-      AllUnits.sort(new InitiativeComparator());
+      // AllUnits.sort(new InitiativeComparator());
+      AllUnits.sort((o1, o2) -> o2.GetInitiative() - o1.GetInitiative());
       for (BaseCharacter baseCharacter : AllUnits) {
         baseCharacter.step(AllUnits);
       }

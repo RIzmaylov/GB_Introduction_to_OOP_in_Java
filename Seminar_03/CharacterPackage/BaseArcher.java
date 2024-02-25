@@ -40,7 +40,7 @@ public abstract class BaseArcher extends BaseCharacter{
     public BaseCharacter nearestEnemy(ArrayList<BaseCharacter> AllUnits) {
         ArrayList<BaseCharacter> enemies = new ArrayList<>();
         for (BaseCharacter baseCharacter : AllUnits) {
-            if (baseCharacter.GetTeamSide() != GetTeamSide()) {
+            if (baseCharacter.GetTeamSide() != GetTeamSide() && baseCharacter.isAlive) {
                 enemies.add(baseCharacter);
             }
         }
