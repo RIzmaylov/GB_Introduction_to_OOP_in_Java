@@ -6,7 +6,7 @@ public abstract class BaseArcher extends BaseCharacter{
     private int arrows;
 
     protected BaseArcher(String name, String weapon, int x, int y, Team teamSide) {
-        super(name, weapon, 75, 5, x, y, 3, teamSide);
+        super(name, weapon, 7, 5, x, y, 3, teamSide);
         this.arrows = 100;    
     }
 

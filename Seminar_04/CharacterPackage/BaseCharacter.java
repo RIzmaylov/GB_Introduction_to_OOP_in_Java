@@ -68,7 +68,7 @@ public abstract class BaseCharacter implements Step {
 
     @Override
     public String toString() {
-        return "Coordinates: x = " + position.getX() + ", y = " + position.getY() + "\n";
+        return "Coordinates: x = " + position.getX() + ", y = " + position.getY() + " ";
     }
 
     public boolean isAlive() {

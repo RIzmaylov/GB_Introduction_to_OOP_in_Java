@@ -9,14 +9,15 @@ public abstract class BaseInfantryman extends BaseCharacter{
     private int endurance;
 
     protected BaseInfantryman(String name, String weapon, int x, int y, Team teamSide) {
-        super(name, weapon, 10, 10, x, y, 2, teamSide);
-        this.strength = 10;
-        this.endurance = 10;
+        super(name, weapon, 1, 1, x, y, 2, teamSide);
+        this.strength = 1;
+        this.endurance = 1;
+        this.damage += strength + endurance;
     }
     
     @Override
     public void Attack(BaseCharacter target) {
-        target.GetDamage(damage + strength + endurance);
+        super.Attack(target);
     }
     
     @Override
@@ -39,21 +40,61 @@ public abstract class BaseInfantryman extends BaseCharacter{
         this.endurance += points;
     }
 
-    private void MoveToPosition(Position difPosition) {
-        if (Math.abs(difPosition.getX()) < Math.abs(difPosition.getY())) {
-            
-        }
-    }
-
     @Override
     public void step(ArrayList<BaseCharacter> AllUnits) {
         if (isAlive) {
             BaseCharacter target = nearestEnemy(AllUnits);
-            Position difPosition = GetPosition().GetDifToEnotherPos(target.GetPosition());
-            if (Math.abs(difPosition.getX()) <= 1 && Math.abs(difPosition.getY()) <= 1) {
+            if (position.CalcDistToAnotherPos(target.position) < 2) {
                 Attack(target);
+                return;
+            }
+
+            // Нахождение всех занятых сокомандниками позиций вокруг текущего юнита
+            ArrayList<Position> friendsPosAround = new ArrayList<>();
+            for (BaseCharacter baseCharacter : AllUnits) {
+                if (baseCharacter.teamSide == teamSide && position.equals(baseCharacter.GetPosition())) friendsPosAround.add(baseCharacter.GetPosition());
+            }
+            
+            Position difPosition = GetPosition().GetDifToEnotherPos(target.GetPosition());
+
+            if (Math.abs(difPosition.getX()) > Math.abs(difPosition.getY())) {
+                // position.setX(difPosition.getX() < 0 ? position.getX() + 1 : position.getX() - 1);
+                if (difPosition.getX() < 0) {
+                    ArrayList<Position> posToMove = new ArrayList<>();  // массив для трех возможных ходов юнита
+                    posToMove.add(new Position(position.getX() + 1, position.getY()));
+                    posToMove.add(new Position(position.getX() + 1, position.getY() + 1 <= 9 ? position.getY() + 1 : 9));
+                    posToMove.add(new Position(position.getX() + 1, position.getY() - 1 >= 0 ? position.getY() - 1 : 0));
+                    for (Position pos : posToMove) {
+                        if (!friendsPosAround.contains(pos)) { position = pos; break; }
+                    }
+                } else {
+                    ArrayList<Position> posToMove = new ArrayList<>();  // массив для трех возможных ходов юнита
+                    posToMove.add(new Position(position.getX() - 1, position.getY()));
+                    posToMove.add(new Position(position.getX() - 1, position.getY() + 1 <= 9 ? position.getY() + 1 : 9));
+                    posToMove.add(new Position(position.getX() - 1, position.getY() - 1 >= 0 ? position.getY() - 1 : 0));
+                    for (Position pos : posToMove) {
+                        if (!friendsPosAround.contains(pos)) { position = pos; break; }
+                    }
+                }
             } else {
-                MoveToPosition(difPosition);
+                // position.setY(difPosition.getY() < 0 ? position.getY() + 1 : position.getY() - 1);
+                if (difPosition.getY() < 0) {
+                    ArrayList<Position> posToMove = new ArrayList<>();  // массив для трех возможных ходов юнита
+                    posToMove.add(new Position(position.getX(), position.getY() + 1));
+                    posToMove.add(new Position(position.getX() + 1 <= 9 ? position.getX() + 1 : 9, position.getY() + 1));
+                    posToMove.add(new Position(position.getX() - 1 >= 0 ? position.getX() - 1 : 0, position.getY() + 1));
+                    for (Position pos : posToMove) {
+                        if (!friendsPosAround.contains(pos)) { position = pos; break; }
+                    }
+                } else {
+                    ArrayList<Position> posToMove = new ArrayList<>();  // массив для трех возможных ходов юнита
+                    posToMove.add(new Position(position.getX(), position.getY() - 1));
+                    posToMove.add(new Position(position.getX() + 1 <= 9 ? position.getX() + 1 : 9, position.getY() - 1));
+                    posToMove.add(new Position(position.getX() - 1 >= 0 ? position.getX() - 1 : 0, position.getY() - 1));
+                    for (Position pos : posToMove) {
+                        if (!friendsPosAround.contains(pos)) { position = pos; break; }
+                    }
+                }
             }
         }
     }

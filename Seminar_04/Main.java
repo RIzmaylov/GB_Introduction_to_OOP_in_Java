@@ -1,6 +1,7 @@
 package Seminar_04;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Seminar_04.CharacterPackage.*;
 import Seminar_04.CharacterPackage.BaseCharacter.Team;
@@ -12,19 +13,33 @@ public class Main {
       ArrayList<BaseCharacter> AllUnits = engine.createTeam(Team.LEFT, 10);
       AllUnits.addAll(engine.createTeam(Team.RIGHT, 10));
 
-      for (BaseCharacter character : AllUnits) {
-        System.out.println("Team: " + character.GetTeamSide());
-        System.out.println(character);
-        System.out.println();
-      }
-
-      System.out.println("------------------------------------");
 
       AllUnits.sort((o1, o2) -> o2.GetInitiative() - o1.GetInitiative());
-      for (BaseCharacter baseCharacter : AllUnits) {
-        baseCharacter.step(AllUnits);
+
+      for (BaseCharacter character : AllUnits) {
+        // System.out.println("Team: " + character.GetTeamSide());
+        System.out.println(character);
+      }
+      System.out.println("------------------------------------");
+
+      Scanner scanner = new Scanner(System.in);
+      while(true) {
+        scanner.nextLine();
+        for (BaseCharacter baseCharacter : AllUnits) {
+          baseCharacter.step(AllUnits);
+        }
+        System.out.println("------------------------------------");
+  
+        
+        for (BaseCharacter character : AllUnits) {
+          // System.out.println("Team: " + character.GetTeamSide());
+          System.out.println(character);
+        }
+        System.out.println("------------------------------------");
+        // scanner.close();
       }
     }
+    
 }
 
 /*
