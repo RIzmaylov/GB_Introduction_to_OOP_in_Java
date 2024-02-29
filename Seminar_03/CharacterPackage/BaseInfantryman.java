@@ -43,7 +43,7 @@ public abstract class BaseInfantryman extends BaseCharacter{
     public void step(ArrayList<BaseCharacter> AllUnits) {
         if (isAlive) {
             BaseCharacter target = nearestEnemy(AllUnits);
-            Position difPosition = GetPosition().GetDifOfToEnotherPos(target.GetPosition());
+            Position difPosition = position.GetDifOfToEnotherPos(target.GetPosition());
         }
     }
     
