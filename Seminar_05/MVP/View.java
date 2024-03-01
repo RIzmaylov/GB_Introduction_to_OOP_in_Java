@@ -9,7 +9,7 @@ public class View {
     private static final String midl10 = formatDiv("d") + String.join("", Collections.nCopies(9, formatDiv("-e"))) + formatDiv("-f");
     private static final String bottom10 = formatDiv("g") + String.join("", Collections.nCopies(9, formatDiv("-h"))) + formatDiv("-i");
     private static void tabSetter(int cnt, int max){
-        int dif = max - cnt + 2;
+        int dif = max + 1 - cnt + 2;
         if (dif>0) System.out.printf("%" + dif + "s", ":\t"); else System.out.print(":\t");
     }
     private static String formatDiv(String str) {
@@ -50,17 +50,17 @@ public class View {
         System.out.print("_".repeat(l[0]*2));
         System.out.println("");
         System.out.print(top10 + "    ");
-        System.out.print("Blue side");
+        System.out.print("Green side");
         //for (int i = 0; i < l[0]-9; i++)
         System.out.print(" ".repeat(l[0]-9));
-        System.out.println(":\tGreen side");
+        System.out.println(":\tBlue side");
         for (int i = 0; i < 10; i++) {
             System.out.print(getChar(0, i));
         }
         System.out.print("|    ");
-        System.out.print(Main.RightTeam.get(0));
-        tabSetter(Main.RightTeam.get(0).toString().length(), l[0]);
-        System.out.println(Main.LeftTeam.get(0));
+        System.out.print(Main.LeftTeam.get(0));
+        tabSetter(Main.LeftTeam.get(0).toString().length(), l[0]);
+        System.out.println(Main.RightTeam.get(0));
         System.out.println(midl10);
 
         for (int i = 1; i < 9; i++) {
@@ -68,18 +68,18 @@ public class View {
                 System.out.print(getChar(i, j));
             }
             System.out.print("|    ");
-            System.out.print(Main.RightTeam.get(i-1));
-            tabSetter(Main.RightTeam.get(i-1).toString().length(), l[0]);
-            System.out.println(Main.LeftTeam.get(i-1));
+            System.out.print(Main.LeftTeam.get(i));
+            tabSetter(Main.LeftTeam.get(i).toString().length(), l[0]);
+            System.out.println(Main.RightTeam.get(i));
             System.out.println(midl10);
         }
         for (int j = 0; j < 10; j++) {
             System.out.print(getChar(9, j));
         }
         System.out.print("|    ");
-        System.out.print(Main.RightTeam.get(9));
-        tabSetter(Main.RightTeam.get(9).toString().length(), l[0]);
-        System.out.println(Main.LeftTeam.get(9));
+        System.out.print(Main.LeftTeam.get(9));
+        tabSetter(Main.LeftTeam.get(9).toString().length(), l[0]);
+        System.out.println(Main.RightTeam.get(9));
         System.out.println(bottom10);
     }
 }

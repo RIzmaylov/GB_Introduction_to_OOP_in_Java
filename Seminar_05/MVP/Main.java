@@ -19,29 +19,34 @@ public class Main {
       RightTeam = engine.createTeam(Team.RIGHT, 10);
       AllUnits.addAll(LeftTeam);
       AllUnits.addAll(RightTeam);
-
-
-      AllUnits.sort((o1, o2) -> o2.GetInitiative() - o1.GetInitiative());
-
-      // for (BaseCharacter character : AllUnits) {
-      //   // System.out.println("Team: " + character.GetTeamSide());
-      //   System.out.println(character);
-      // }
-      // System.out.println("------------------------------------");
+      for (BaseCharacter character : AllUnits) {
+        // System.out.println("Team: " + character.GetTeamSide());
+        System.out.println(character);
+      }
+      System.out.println("------------------------------------");
+      ArrayList<BaseCharacter> sortedAllUnits = new ArrayList<>();
+      sortedAllUnits.addAll(AllUnits);
+      sortedAllUnits.sort((o1, o2) -> o2.GetInitiative() - o1.GetInitiative());
 
       Scanner scanner = new Scanner(System.in);
       while(true) {
         View.view();
         scanner.nextLine();
-        for (BaseCharacter baseCharacter : AllUnits) {
-          baseCharacter.step(AllUnits);
+        for (BaseCharacter baseCharacter : sortedAllUnits) {
+          baseCharacter.step(sortedAllUnits);
         }
         if (engine.TeamIsDead(LeftTeam)) {
-          System.out.println("Команда Blue победила!");
+          View.view();
+          System.out.println("\u250c------------------------------\u2510");
+          System.out.println("|----Команда Blue победила!----|");
+          System.out.println("\u2514------------------------------\u2518");
           break;
         }
         if (engine.TeamIsDead(RightTeam)) {
-          System.out.println("Команда Green победила!");
+          View.view();
+          System.out.println("\u250c-------------------------------\u2510");
+          System.out.println("|----Команда Green победила!----|");
+          System.out.println("\u2514-------------------------------\u2518");
           break;
         }
         

@@ -15,6 +15,7 @@ public abstract class BaseWizard extends BaseCharacter{
     public void Attack(BaseCharacter target) {
         if (mana > 0) {
             super.Attack(target);
+            lastAct = "атакует!";
             mana-= 5;
         }
     }

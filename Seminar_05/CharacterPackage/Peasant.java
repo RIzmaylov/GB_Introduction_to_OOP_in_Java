@@ -8,6 +8,7 @@ public class Peasant extends BaseCharacter{
     public Peasant(String name, int x, int y, Team teamSide) {
         super(name, "pitchfork", 10, 10, x, y, 0, teamSide);
         this.strength = 10;
+        this.lastAct = "пашет землю";
     }
 
     @Override
@@ -27,12 +28,12 @@ public class Peasant extends BaseCharacter{
 
     @Override
     public String toString() {
-        return "Крестьянин " + this.name;
+        return "Крестьянин " + this.name + (isAlive() ? " HP:" + this.health + " DMG:" + this.damage + " " + lastAct : " умер");
     }
 
     @Override
     public void step(ArrayList<BaseCharacter> enemies) {
-        System.out.println(toString() + " пашет землю");
+        System.out.println(getInfo() + " " + name + " пашет землю");
     }
         
     @Override

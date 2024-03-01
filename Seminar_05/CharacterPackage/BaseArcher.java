@@ -7,7 +7,7 @@ public abstract class BaseArcher extends BaseCharacter{
 
     protected BaseArcher(String name, String weapon, int x, int y, Team teamSide) {
         super(name, weapon, 7, 5, x, y, 3, teamSide);
-        this.arrows = 100;    
+        this.arrows = 100;
     }
 
     @Override
@@ -15,6 +15,7 @@ public abstract class BaseArcher extends BaseCharacter{
         if (arrows > 0) {
             super.Attack(target);
             arrows--;
+            lastAct = "атакует!";
         }
     }
     

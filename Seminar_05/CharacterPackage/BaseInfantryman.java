@@ -47,6 +47,7 @@ public abstract class BaseInfantryman extends BaseCharacter{
             if (target == null) return;
             if (position.CalcDistToAnotherPos(target.position) < 2) {
                 Attack(target);
+                lastAct = "атакует!";
                 return;
             }
 
@@ -97,6 +98,8 @@ public abstract class BaseInfantryman extends BaseCharacter{
                     }
                 }
             }
+            
+            lastAct = "идет к врагу!";
         }
     }
     

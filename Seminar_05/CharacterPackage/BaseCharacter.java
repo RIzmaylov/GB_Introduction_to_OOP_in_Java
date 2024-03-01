@@ -19,6 +19,7 @@ public abstract class BaseCharacter implements Step {
     protected boolean isAlive = true;
     protected int initiative;
     protected Team teamSide;
+    protected String lastAct = "стоит";
 
     protected Position position;
 
@@ -66,7 +67,8 @@ public abstract class BaseCharacter implements Step {
     }
 
     public void Attack(BaseCharacter target) {
-        System.out.println(this.toString() + "\nАтаковал\n" + target + "\nУроном " + this.damage);
+        System.out.print(this.getInfo() + " " + this.name + " aтаковал " + 
+            target.getInfo() + " " + target.name + " уроном " + this.damage + " ");
         target.GetDamage(this.damage);
     }
 
@@ -94,9 +96,9 @@ public abstract class BaseCharacter implements Step {
     public void GetDamage(int damage) {
         if (this.health - damage > 0) {
             this.health -= damage;
-            System.out.println("Осталось жизней - " + this.health + "\n");
+            System.out.println("Осталось жизней - " + this.health);
         } else {
-            System.out.println("Умер :(\n");
+            System.out.println(this.name + " умер :(");
             dying();
         }
     }
