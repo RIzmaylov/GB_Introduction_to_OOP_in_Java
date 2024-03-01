@@ -7,7 +7,7 @@ public abstract class BaseWizard extends BaseCharacter{
     private int maxMana = 100;
 
     protected BaseWizard(String name, String weapon, int x, int y, Team teamSide) {
-        super(name, weapon, 75, 5, x, y, 1, teamSide);
+        super(name, weapon, 15, 5, x, y, 1, teamSide);
         this.mana = 100;
     }
 
