@@ -44,6 +44,7 @@ public abstract class BaseInfantryman extends BaseCharacter{
     public void step(ArrayList<BaseCharacter> AllUnits) {
         if (isAlive) {
             BaseCharacter target = nearestEnemy(AllUnits);
+            if (target == null) return;
             if (position.CalcDistToAnotherPos(target.position) < 2) {
                 Attack(target);
                 return;

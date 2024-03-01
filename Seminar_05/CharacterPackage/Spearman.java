@@ -7,8 +7,11 @@ public class Spearman extends BaseInfantryman {
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Класс: Копейщик " +
-                "Имя: " + this.name;
+        return "Копейщик " + this.name;
+    }
+        
+    @Override
+    public String getInfo() {
+        return "Копейщик";
     }
 }

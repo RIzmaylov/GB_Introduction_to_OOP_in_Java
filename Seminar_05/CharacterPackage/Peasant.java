@@ -27,13 +27,16 @@ public class Peasant extends BaseCharacter{
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Класс: Крестьянин " +
-                "Имя: " + this.name;
+        return "Крестьянин " + this.name;
     }
 
     @Override
     public void step(ArrayList<BaseCharacter> enemies) {
-        System.out.println(toString() + " ничего не делает");
+        System.out.println(toString() + " пашет землю");
+    }
+        
+    @Override
+    public String getInfo() {
+        return "Крестьянин";
     }
 }

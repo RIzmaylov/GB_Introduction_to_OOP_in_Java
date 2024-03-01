@@ -5,17 +5,18 @@ import java.util.ArrayList;
 public abstract class BaseWizard extends BaseCharacter{
     private int mana;
     private int maxMana = 100;
-    private int intelligence;
 
     protected BaseWizard(String name, String weapon, int x, int y, Team teamSide) {
         super(name, weapon, 75, 5, x, y, 1, teamSide);
         this.mana = 100;
-        this.intelligence = 10;
     }
 
     @Override
     public void Attack(BaseCharacter target) {
-        target.GetDamage(damage * intelligence);
+        if (mana > 0) {
+            super.Attack(target);
+            mana-= 5;
+        }
     }
     
     @Override
@@ -23,7 +24,6 @@ public abstract class BaseWizard extends BaseCharacter{
         if (this.current_xp + xp >= this.xpInLevel) {
             this.level++;
             this.current_xp += xp - xpInLevel;
-            boostIntelligence(10);
         } else {
             this.current_xp += xp;
         }
@@ -37,12 +37,12 @@ public abstract class BaseWizard extends BaseCharacter{
         }
     }
 
-    private void boostIntelligence(int points) {
-        this.intelligence += points;
-    }
-
     @Override
-    public void step(ArrayList<BaseCharacter> enemies) {
-        System.out.println(toString() + " ничего не делает");
+    public void step(ArrayList<BaseCharacter> AllUnits) {
+        if (isAlive) {
+            BaseCharacter enemy = nearestEnemy(AllUnits);
+            if (enemy == null) return;
+            Attack(enemy);
+        }
     }
 }

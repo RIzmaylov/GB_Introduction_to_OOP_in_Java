@@ -32,6 +32,14 @@ public class Engine {
         return team;
     }
 
+    
+    public boolean TeamIsDead(ArrayList<BaseCharacter> team) {
+        for (BaseCharacter baseCharacter : team) {
+            if (baseCharacter.isAlive()) return false;
+        }
+        return true;
+    }
+
     /**
      * Функция создает персонажа
      * @param i - случайное число, определяющее тип персонажа
@@ -57,4 +65,5 @@ public class Engine {
                 return new Witch(names.get(random.nextInt(names.size())), x, y, teamSide);
         }
     }
+
 }

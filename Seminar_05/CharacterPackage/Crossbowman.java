@@ -7,8 +7,11 @@ public class Crossbowman extends BaseArcher{
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Класс: Арбалетчик " +
-                "Имя: " + this.name;
+        return "Арбалетчик " + this.name;
+    }
+
+    @Override
+    public String getInfo() {
+        return "Арбалетчик";
     }
 }

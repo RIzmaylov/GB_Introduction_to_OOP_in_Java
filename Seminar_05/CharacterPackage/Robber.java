@@ -8,9 +8,12 @@ public class Robber extends BaseInfantryman{
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Класс: Разбойник " +
-                "Имя: " + this.name;
+        return "Разбойник " + this.name;
+    }
+        
+    @Override
+    public String getInfo() {
+        return "Разбойник";
     }
     
 }

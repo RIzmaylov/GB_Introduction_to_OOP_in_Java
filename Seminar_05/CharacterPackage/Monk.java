@@ -7,8 +7,11 @@ public class Monk extends BaseWizard{
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Класс: Монах " +
-                "Имя: " + this.name;
+        return "Монах " + this.name;
+    }
+    
+    @Override
+    public String getInfo() {
+        return "Монах";
     }
 }

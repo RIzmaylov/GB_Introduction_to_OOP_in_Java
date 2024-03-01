@@ -1,4 +1,4 @@
-package Seminar_05;
+package Seminar_05.MVP;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,34 +8,48 @@ import Seminar_05.CharacterPackage.BaseCharacter.Team;
 import Seminar_05.Engine.Engine;
 
 public class Main {
+
+    public static ArrayList<BaseCharacter> LeftTeam = new ArrayList<>();
+    public static ArrayList<BaseCharacter> RightTeam = new ArrayList<>();
+    public static ArrayList<BaseCharacter> AllUnits = new ArrayList<>();
     public static void main(String[] args) {
       Engine engine = new Engine();
-      ArrayList<BaseCharacter> AllUnits = engine.createTeam(Team.LEFT, 10);
-      AllUnits.addAll(engine.createTeam(Team.RIGHT, 10));
+
+      LeftTeam = engine.createTeam(Team.LEFT, 10);
+      RightTeam = engine.createTeam(Team.RIGHT, 10);
+      AllUnits.addAll(LeftTeam);
+      AllUnits.addAll(RightTeam);
 
 
       AllUnits.sort((o1, o2) -> o2.GetInitiative() - o1.GetInitiative());
 
-      for (BaseCharacter character : AllUnits) {
-        // System.out.println("Team: " + character.GetTeamSide());
-        System.out.println(character);
-      }
-      System.out.println("------------------------------------");
+      // for (BaseCharacter character : AllUnits) {
+      //   // System.out.println("Team: " + character.GetTeamSide());
+      //   System.out.println(character);
+      // }
+      // System.out.println("------------------------------------");
 
       Scanner scanner = new Scanner(System.in);
       while(true) {
+        View.view();
         scanner.nextLine();
         for (BaseCharacter baseCharacter : AllUnits) {
           baseCharacter.step(AllUnits);
         }
-        System.out.println("------------------------------------");
-  
-        
-        for (BaseCharacter character : AllUnits) {
-          // System.out.println("Team: " + character.GetTeamSide());
-          System.out.println(character);
+        if (engine.TeamIsDead(LeftTeam)) {
+          System.out.println("Команда Blue победила!");
+          break;
         }
-        System.out.println("------------------------------------");
+        if (engine.TeamIsDead(RightTeam)) {
+          System.out.println("Команда Green победила!");
+          break;
+        }
+        
+        // for (BaseCharacter character : AllUnits) {
+        //   // System.out.println("Team: " + character.GetTeamSide());
+        //   System.out.println(character);
+        // }
+        // System.out.println("------------------------------------");
         // scanner.close();
       }
     }

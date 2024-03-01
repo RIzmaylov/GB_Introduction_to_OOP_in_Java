@@ -8,9 +8,12 @@ public class Witch extends BaseWizard{
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Класс: Колдун " +
-                "Имя: " + this.name;
+        return "Колдун " + this.name;
+    }
+        
+    @Override
+    public String getInfo() {
+        return "Колдун";
     }
 
 }

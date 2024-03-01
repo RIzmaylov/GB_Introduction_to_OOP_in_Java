@@ -7,8 +7,11 @@ public class Sniper extends BaseArcher{
 
     @Override
     public String toString() {
-        return super.toString() +
-                "Класс: Снайпер " +
-                "Имя: " + this.name;
+        return "Снайпер " + this.name;
+    }
+    
+    @Override
+    public String getInfo() {
+        return "Снайпер";
     }
 }

@@ -53,6 +53,10 @@ public abstract class BaseCharacter implements Step {
         return name;
     }
 
+    public int getHp() {
+        return health;
+    }
+
     public void healed(int Hp) {
         if (this.health + Hp >= this.maxHealth) {
             this.health = this.maxHealth;
@@ -66,10 +70,10 @@ public abstract class BaseCharacter implements Step {
         target.GetDamage(this.damage);
     }
 
-    @Override
-    public String toString() {
-        return "Coordinates: x = " + position.getX() + ", y = " + position.getY() + " ";
-    }
+    // @Override
+    // public String toString() {
+    //     return "Coordinates: x = " + position.getX() + ", y = " + position.getY() + " ";
+    // }
 
     public boolean isAlive() {
         return isAlive;
@@ -84,6 +88,8 @@ public abstract class BaseCharacter implements Step {
         this.health = health;
         isAlive = true;
     }
+
+    public abstract String getInfo();
 
     public void GetDamage(int damage) {
         if (this.health - damage > 0) {
@@ -128,7 +134,7 @@ public abstract class BaseCharacter implements Step {
                 enemies.add(baseCharacter);
             }
         }
-        
+        if (enemies.isEmpty()) return null;
         int indexOfEnemy = 0;
         double minDistToEnemy = GetPosition().CalcDistToAnotherPos(enemies.get(indexOfEnemy).GetPosition());
         for (int i = 1; i < enemies.size(); i++) {

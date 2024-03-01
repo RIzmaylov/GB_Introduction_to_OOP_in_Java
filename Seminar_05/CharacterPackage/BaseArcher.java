@@ -32,7 +32,9 @@ public abstract class BaseArcher extends BaseCharacter{
     @Override
     public void step(ArrayList<BaseCharacter> AllUnits) {
         if (isAlive) {
-            Attack(nearestEnemy(AllUnits));
+            BaseCharacter enemy = nearestEnemy(AllUnits);
+            if (enemy == null) return;
+            Attack(enemy);
         }
     }
     
