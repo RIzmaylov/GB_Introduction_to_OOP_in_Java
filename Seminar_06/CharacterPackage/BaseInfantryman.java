@@ -27,6 +27,11 @@ public abstract class BaseInfantryman extends BaseCharacter{
     }
     
     @Override
+    public String toString() {
+        return getInfo() + super.toString() + (isAlive() ? " \u2620 :" + this.damage + " " + lastAct : " умер \u2639");
+    }
+    
+    @Override
     public void GetXp(int xp) {
         if (this.current_xp + xp >= this.xpInLevel) {
             this.level++;

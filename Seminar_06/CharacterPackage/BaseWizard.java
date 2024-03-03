@@ -47,8 +47,13 @@ public abstract class BaseWizard extends BaseCharacter{
     public void heal(BaseCharacter friend) {
         friend.healed(healedHP);
         mana -= manaToHeal;
-        System.out.println(this.getInfo() + " " + this.name + " вылечил " + friend.getInfo() + " " + friend.getName());
-        lastAct = "вылечил товарища!";
+        if (friend == this) {
+            System.out.println(this.getInfo() + " " + this.name + " вылечил себя");
+            lastAct = "вылечился!";
+        } else {
+            System.out.println(this.getInfo() + " " + this.name + " вылечил " + friend.getInfo() + " " + friend.getName());
+            lastAct = "вылечил товарища!";
+        }
     }
 
     public void revive(BaseCharacter friend) {
@@ -92,5 +97,10 @@ public abstract class BaseWizard extends BaseCharacter{
                 GetXp(expForStand);
             }
         }
+    }
+    
+    @Override
+    public String toString() {
+        return getInfo() + super.toString() + (isAlive() ? " \u2668 :" + this.getMana() + " " + lastAct : " умер \u2639");
     }
 }

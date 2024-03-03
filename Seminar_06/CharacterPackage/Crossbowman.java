@@ -7,13 +7,7 @@ public class Crossbowman extends BaseArcher{
     }
 
     @Override
-    public String toString() {
-        return "Арбалетчик " + this.name + (isAlive() ? " HP:" + this.health + " Def:" + this.defense + " DMG:" + this.damage + " Lvl:" + this.level + 
-                                                    " Стрел:" + this.getCntArrows() + " " + lastAct : " умер");
-    }
-
-    @Override
     public String getInfo() {
-        return "Арбалетчик";
+        return "Арбалетчик ";
     }
 }

@@ -54,4 +54,9 @@ public abstract class BaseArcher extends BaseCharacter{
         }
     }
     
+    @Override
+    public String toString() {
+        return getInfo() + super.toString() + (isAlive() ? " \u27B6 :" + this.getCntArrows() + " " + lastAct : " умер \u2639");
+    }
+    
 }

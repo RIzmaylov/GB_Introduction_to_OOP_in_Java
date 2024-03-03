@@ -7,14 +7,10 @@ public class Robber extends BaseInfantryman{
         this.lastAct = "точит ножи";
     }
 
-    @Override
-    public String toString() {
-        return "Разбойник " + this.name + (isAlive() ? " HP:" + this.health + " Def:" + this.defense + " DMG:" + this.damage + " Lvl:" + this.level + " " + lastAct : " умер");
-    }
         
     @Override
     public String getInfo() {
-        return "Разбойник";
+        return "Разбойник ";
     }
     
 }

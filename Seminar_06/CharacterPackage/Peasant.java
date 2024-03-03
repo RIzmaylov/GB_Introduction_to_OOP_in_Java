@@ -37,7 +37,7 @@ public class Peasant extends BaseCharacter{
 
     @Override
     public String toString() {
-        return "Крестьянин " + this.name + (isAlive() ? " HP:" + this.health + " Def:" + this.defense + " Lvl:" + this.level + " " + lastAct : " умер");
+        return getInfo() + super.toString() + (isAlive() ? " " + lastAct : " умер \u2639");
     }
 
     private ArrayList<BaseCharacter> getFriendArchers(ArrayList<BaseCharacter> AllUnits) {
@@ -67,6 +67,6 @@ public class Peasant extends BaseCharacter{
         
     @Override
     public String getInfo() {
-        return "Крестьянин";
+        return "Крестьянин ";
     }
 }

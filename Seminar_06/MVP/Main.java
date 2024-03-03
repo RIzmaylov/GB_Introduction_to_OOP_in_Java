@@ -1,3 +1,5 @@
+// Для отображения символов в терминале VS Code chcp 65001
+
 package Seminar_06.MVP;
 
 import java.util.ArrayList;

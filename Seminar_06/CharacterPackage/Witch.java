@@ -6,15 +6,10 @@ public class Witch extends BaseWizard{
         super(name, "staff", x, y, teamSide);
         this.lastAct = "крафтит зелья";
     }
-
-    @Override
-    public String toString() {
-        return "Колдун " + this.name + (isAlive() ? " HP:" + this.health + " Def:" + this.defense + " Mana:" + this.getMana() + " Lvl:" + this.level + " " + lastAct : " умер");
-    }
         
     @Override
     public String getInfo() {
-        return "Колдун";
+        return "Колдун ";
     }
 
 }

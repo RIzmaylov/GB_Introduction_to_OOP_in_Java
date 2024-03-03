@@ -5,14 +5,9 @@ public class Spearman extends BaseInfantryman {
         super(name, "spear", x, y, teamSide);
         this.lastAct = "точит копье";
     }
-
-    @Override
-    public String toString() {
-        return "Копейщик " + this.name + (isAlive() ? " HP:" + this.health + " Def:" + this.defense + " DMG:" + this.damage + " Lvl:" + this.level + " " + lastAct : " умер");
-    }
         
     @Override
     public String getInfo() {
-        return "Копейщик";
+        return "Копейщик ";
     }
 }

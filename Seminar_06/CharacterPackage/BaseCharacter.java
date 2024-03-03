@@ -75,10 +75,10 @@ public abstract class BaseCharacter implements Step {
         target.GetDamage(this.damage);
     }
 
-    // @Override
-    // public String toString() {
-    //     return "Coordinates: x = " + position.getX() + ", y = " + position.getY() + " ";
-    // }
+    @Override
+    public String toString() {
+        return this.name + " \u2654 :" + this.level + " \u2665:" + this.health + " \uD83D\uDEE1\uFE0F :" + this.defense;
+    }
 
     public boolean isAlive() {
         return isAlive;
