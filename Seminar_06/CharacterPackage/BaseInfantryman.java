@@ -64,10 +64,10 @@ public abstract class BaseInfantryman extends BaseCharacter{
             // Нахождение всех занятых сокомандниками позиций вокруг текущего юнита
             ArrayList<Position> friendsPosAround = new ArrayList<>();
             for (BaseCharacter baseCharacter : AllUnits) {
-                if (baseCharacter.teamSide == teamSide && position.equals(baseCharacter.GetPosition())) friendsPosAround.add(baseCharacter.GetPosition());
+                if (baseCharacter.teamSide == teamSide && position.isAround(baseCharacter.GetPosition())) friendsPosAround.add(baseCharacter.GetPosition());
             }
             
-            Position difPosition = GetPosition().GetDifToEnotherPos(target.GetPosition());
+            Position difPosition = position.GetDifToEnotherPos(target.GetPosition());
 
             if (Math.abs(difPosition.getX()) > Math.abs(difPosition.getY())) {
                 if (difPosition.getX() < 0) {
@@ -76,7 +76,7 @@ public abstract class BaseInfantryman extends BaseCharacter{
                     posToMove.add(new Position(position.getX() + 1, position.getY() + 1 <= 9 ? position.getY() + 1 : 9));
                     posToMove.add(new Position(position.getX() + 1, position.getY() - 1 >= 0 ? position.getY() - 1 : 0));
                     for (Position pos : posToMove) {
-                        if (!friendsPosAround.contains(pos)) { position = pos; break; }
+                        if (!friendsPosAround.contains(pos)) { position.setX(pos.getX()); position.setY(pos.getY()); break; }
                     }
                 } else {
                     ArrayList<Position> posToMove = new ArrayList<>();  // массив для трех возможных ходов юнита
@@ -84,7 +84,7 @@ public abstract class BaseInfantryman extends BaseCharacter{
                     posToMove.add(new Position(position.getX() - 1, position.getY() + 1 <= 9 ? position.getY() + 1 : 9));
                     posToMove.add(new Position(position.getX() - 1, position.getY() - 1 >= 0 ? position.getY() - 1 : 0));
                     for (Position pos : posToMove) {
-                        if (!friendsPosAround.contains(pos)) { position = pos; break; }
+                        if (!friendsPosAround.contains(pos)) { position.setX(pos.getX()); position.setY(pos.getY()); break; }
                     }
                 }
             } else {
@@ -94,7 +94,7 @@ public abstract class BaseInfantryman extends BaseCharacter{
                     posToMove.add(new Position(position.getX() + 1 <= 9 ? position.getX() + 1 : 9, position.getY() + 1));
                     posToMove.add(new Position(position.getX() - 1 >= 0 ? position.getX() - 1 : 0, position.getY() + 1));
                     for (Position pos : posToMove) {
-                        if (!friendsPosAround.contains(pos)) { position = pos; break; }
+                        if (!friendsPosAround.contains(pos)) { position.setX(pos.getX()); position.setY(pos.getY()); break; }
                     }
                 } else {
                     ArrayList<Position> posToMove = new ArrayList<>();  // массив для трех возможных ходов юнита
@@ -102,7 +102,7 @@ public abstract class BaseInfantryman extends BaseCharacter{
                     posToMove.add(new Position(position.getX() + 1 <= 9 ? position.getX() + 1 : 9, position.getY() - 1));
                     posToMove.add(new Position(position.getX() - 1 >= 0 ? position.getX() - 1 : 0, position.getY() - 1));
                     for (Position pos : posToMove) {
-                        if (!friendsPosAround.contains(pos)) { position = pos; break; }
+                        if (!friendsPosAround.contains(pos)) { position.setX(pos.getX()); position.setY(pos.getY()); break; }
                     }
                 }
             }

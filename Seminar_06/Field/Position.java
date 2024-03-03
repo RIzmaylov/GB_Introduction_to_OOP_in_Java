@@ -51,8 +51,12 @@ public class Position {
         this.x = x;
         this.y = y;
     }
+    @Override
+    public boolean equals(Object other) {
+        return ((Position)other).x == x && ((Position)other).y == y;
+    }
 
-    public boolean equals(Position other) {
-        return other.x == x && other.y == y;
+    public boolean isAround(Position other) {
+        return Math.abs(other.x - x) < 2 && Math.abs(other.y - y) < 2;
     }
 }
