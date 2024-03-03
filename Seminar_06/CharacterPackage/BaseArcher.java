@@ -1,12 +1,14 @@
-package Seminar_05.CharacterPackage;
+package Seminar_06.CharacterPackage;
 
 import java.util.ArrayList;
 
 public abstract class BaseArcher extends BaseCharacter{
     private int arrows;
+    private int dmgForLevelUp = 2;
+    private int defForLevelUp = 2;
 
     protected BaseArcher(String name, String weapon, int x, int y, Team teamSide) {
-        super(name, weapon, 5, 5, x, y, 3, teamSide);
+        super(name, weapon, 5, 2, x, y, 3, teamSide);
         this.arrows = 10;
     }
 
@@ -34,6 +36,9 @@ public abstract class BaseArcher extends BaseCharacter{
         if (this.current_xp + xp >= this.xpInLevel) {
             this.level++;
             this.current_xp += xp - xpInLevel;
+            this.damage += dmgForLevelUp;
+            this.defense += defForLevelUp;
+            System.out.println(this.getInfo() + " " + this.name + " повысил уровень!");
         } else {
             this.current_xp += xp;
         }

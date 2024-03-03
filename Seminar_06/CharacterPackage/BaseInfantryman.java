@@ -1,8 +1,8 @@
-package Seminar_05.CharacterPackage;
+package Seminar_06.CharacterPackage;
 
 import java.util.ArrayList;
 
-import Seminar_05.Field.Position;
+import Seminar_06.Field.Position;
 
 public abstract class BaseInfantryman extends BaseCharacter{
     private int strength;
@@ -12,9 +12,10 @@ public abstract class BaseInfantryman extends BaseCharacter{
     private int expForMove = 10;
     private int strengthForLevel = 1;
     private int enduranceForLevel = 1;
+    private int defForLevelUp = 1;
 
     protected BaseInfantryman(String name, String weapon, int x, int y, Team teamSide) {
-        super(name, weapon, 4, 10, x, y, 2, teamSide);
+        super(name, weapon, 4, 5, x, y, 2, teamSide);
         this.strength = 1;
         this.endurance = 1;
         this.damage += strength + endurance;
@@ -32,7 +33,9 @@ public abstract class BaseInfantryman extends BaseCharacter{
             this.current_xp += xp - xpInLevel;
             boostStrength(strengthForLevel);
             boostEndurance(enduranceForLevel);
-            System.out.println("повысил уровень!");
+            this.damage += strengthForLevel + enduranceForLevel;
+            this.defense += defForLevelUp;
+            System.out.println(this.getInfo() + " " + this.name + " повысил уровень!");
         } else {
             this.current_xp += xp;
         }

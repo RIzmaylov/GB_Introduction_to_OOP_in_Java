@@ -1,10 +1,10 @@
-package Seminar_05.CharacterPackage;
+package Seminar_06.CharacterPackage;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import Seminar_05.Field.Position;
-import Seminar_05.Interfaces.Step;
+import Seminar_06.Field.Position;
+import Seminar_06.Interfaces.Step;
 
 public abstract class BaseCharacter implements Step {
     protected String name;
@@ -61,10 +61,10 @@ public abstract class BaseCharacter implements Step {
 
     public void healed(int Hp) {
         if (this.health + Hp >= this.maxHealth) {
-            System.out.println("вылечился на " + (this.maxHealth - this.health) + " HP");
+            System.out.println(this.getInfo() + " " + this.name + " вылечился на " + (this.maxHealth - this.health) + " HP");
             this.health = this.maxHealth;
         } else {
-            System.out.println("вылечился на " + Hp + " HP");
+            System.out.println(this.getInfo() + " " + this.name + " вылечился на " + Hp + " HP");
             this.health += Hp;
         }
     }
@@ -82,6 +82,10 @@ public abstract class BaseCharacter implements Step {
 
     public boolean isAlive() {
         return isAlive;
+    }
+
+    public boolean isFullHP() {
+        return health == maxHealth;
     }
 
     public void dying() {

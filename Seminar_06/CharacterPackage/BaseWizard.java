@@ -1,4 +1,4 @@
-package Seminar_05.CharacterPackage;
+package Seminar_06.CharacterPackage;
 
 import java.util.ArrayList;
 
@@ -16,6 +16,7 @@ public abstract class BaseWizard extends BaseCharacter{
     private int expForHeal = 10;
     private int expForRev = 20;
     private int expForStand = 5;
+    private int defForLevelUp = 1;
 
     protected BaseWizard(String name, String weapon, int x, int y, Team teamSide) {
         super(name, weapon, 5, 3, x, y, 1, teamSide);
@@ -30,25 +31,30 @@ public abstract class BaseWizard extends BaseCharacter{
             manaToHeal = (manaToHeal - 1) < 5 ? 5 : manaToHeal - 1;
             healedHP += 5;
             HPAfterRev += 5;
+            this.defense += defForLevelUp;
             if (level % 5 == 0 && level < 11) minDyingFriendToRev--;
             recManaByStep = (recManaByStep + 1) > 15 ? 15 : recManaByStep + 1;
-            System.out.println("повысил уровень!");
+            System.out.println(this.getInfo() + " " + this.name + " повысил уровень!");
         } else {
             current_xp += xp;
         }
     }
 
+    public int getMana() {
+        return mana;
+    }
+
     public void heal(BaseCharacter friend) {
         friend.healed(healedHP);
         mana -= manaToHeal;
-        System.out.println("вылечил " + friend.getInfo() + " " + friend.getName());
+        System.out.println(this.getInfo() + " " + this.name + " вылечил " + friend.getInfo() + " " + friend.getName());
         lastAct = "вылечил товарища!";
     }
 
     public void revive(BaseCharacter friend) {
         friend.revival(HPAfterRev);
         mana -= manaToRevive;
-        System.out.println("возродил " + friend.getInfo() + " " + friend.getName());
+        System.out.println(this.getInfo() + " " + this.name + " возродил " + friend.getInfo() + " " + friend.getName());
         lastAct = "возродил братишку!";
     }
     
@@ -68,8 +74,14 @@ public abstract class BaseWizard extends BaseCharacter{
                 revive(getRandomDeceasedFriend(AllUnits));
                 GetXp(expForRev);
             } else if (mana >= manaToHeal) {
-                heal(getFriendWithMinHealth(AllUnits));
-                GetXp(expForHeal);
+                BaseCharacter friendWithMinHealth = getFriendWithMinHealth(AllUnits);
+                if (friendWithMinHealth.isFullHP()) {
+                    recMana(recManaByStep);
+                    GetXp(expForStand);
+                } else {
+                    heal(getFriendWithMinHealth(AllUnits));
+                    GetXp(expForHeal);
+                }
             } else {
                 recMana(recManaByStep);
                 GetXp(expForStand);
