@@ -161,7 +161,7 @@ public abstract class BaseCharacter implements Step {
         int indexOfFriend = 0;
         boolean flag = true;
         for (int i = 1; i < AllUnits.size(); i++) {
-            if (AllUnits.get(i).GetTeamSide() == GetTeamSide()) {
+            if (AllUnits.get(i).GetTeamSide() == this.GetTeamSide()) {
                 if (flag) {
                     minHP = AllUnits.get(i).getHp();
                     flag = false;
@@ -178,7 +178,7 @@ public abstract class BaseCharacter implements Step {
     private ArrayList<Integer> getListIndexesOfDeceasedFriends(ArrayList<BaseCharacter> AllUnits) {
         ArrayList<Integer> result = new ArrayList<>();
         for (int i = 0; i < AllUnits.size(); ++i) {
-            if (AllUnits.get(i).GetTeamSide() == GetTeamSide() && !AllUnits.get(i).isAlive()) {
+            if (AllUnits.get(i).GetTeamSide() == this.GetTeamSide() && !AllUnits.get(i).isAlive()) {
                 result.add(i);
             }
         }

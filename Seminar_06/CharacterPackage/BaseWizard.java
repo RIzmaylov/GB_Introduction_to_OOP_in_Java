@@ -70,16 +70,21 @@ public abstract class BaseWizard extends BaseCharacter{
     @Override
     public void step(ArrayList<BaseCharacter> AllUnits) {
         if (isAlive) {
-            if (getCountDyingFriends(AllUnits) >= minDyingFriendToRev && mana >= manaToRevive) {
-                revive(getRandomDeceasedFriend(AllUnits));
-                GetXp(expForRev);
+            if (this.getCountDyingFriends(AllUnits) >= minDyingFriendToRev) {
+                if (mana >= manaToRevive) {
+                    revive(this.getRandomDeceasedFriend(AllUnits));
+                    GetXp(expForRev);
+                } else {
+                    recMana(recManaByStep);
+                    GetXp(expForStand);
+                }
             } else if (mana >= manaToHeal) {
-                BaseCharacter friendWithMinHealth = getFriendWithMinHealth(AllUnits);
+                BaseCharacter friendWithMinHealth = this.getFriendWithMinHealth(AllUnits);
                 if (friendWithMinHealth.isFullHP()) {
                     recMana(recManaByStep);
                     GetXp(expForStand);
                 } else {
-                    heal(getFriendWithMinHealth(AllUnits));
+                    heal(this.getFriendWithMinHealth(AllUnits));
                     GetXp(expForHeal);
                 }
             } else {
