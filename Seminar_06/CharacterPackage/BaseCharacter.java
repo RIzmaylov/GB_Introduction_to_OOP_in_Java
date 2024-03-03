@@ -178,7 +178,7 @@ public abstract class BaseCharacter implements Step {
     private ArrayList<Integer> getListIndexesOfDeceasedFriends(ArrayList<BaseCharacter> AllUnits) {
         ArrayList<Integer> result = new ArrayList<>();
         for (int i = 0; i < AllUnits.size(); ++i) {
-            if (AllUnits.get(i).GetTeamSide() == this.GetTeamSide() && !AllUnits.get(i).isAlive()) {
+            if (this != AllUnits.get(i) && AllUnits.get(i).teamSide == teamSide && !AllUnits.get(i).isAlive()) {
                 result.add(i);
             }
         }
@@ -191,6 +191,7 @@ public abstract class BaseCharacter implements Step {
 
     protected BaseCharacter getRandomDeceasedFriend(ArrayList<BaseCharacter> AllUnits) {
         Random rand = new Random();
-        return AllUnits.get(rand.nextInt(getListIndexesOfDeceasedFriends(AllUnits).size()));
+        ArrayList<Integer> idxs = getListIndexesOfDeceasedFriends(AllUnits);
+        return AllUnits.get(idxs.get(rand.nextInt(idxs.size())));
     }
 }

@@ -16,12 +16,12 @@ public class Main {
       Engine engine = new Engine();
 
       // Создание случайных команд: 
-      // LeftTeam = engine.createTeam(Team.LEFT, 10);
-      // RightTeam = engine.createTeam(Team.RIGHT, 10);
+      LeftTeam = engine.createTeam(Team.LEFT, 10);
+      RightTeam = engine.createTeam(Team.RIGHT, 10);
       
       // Создание определенных команд: 
-      LeftTeam = engine.createBalancedTeam(Team.LEFT, 10);
-      RightTeam = engine.createBalancedTeam(Team.RIGHT, 10);
+      // LeftTeam = engine.createBalancedTeam(Team.LEFT, 10);
+      // RightTeam = engine.createBalancedTeam(Team.RIGHT, 10);
 
       AllUnits.addAll(LeftTeam);
       AllUnits.addAll(RightTeam);
